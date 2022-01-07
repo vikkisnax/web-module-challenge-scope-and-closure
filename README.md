@@ -61,6 +61,11 @@ You will be running your tests in one terminal and debugging in the other. As yo
 Edit the `ReadMe` file with your answers to the questions below.
 
 1. In your own words, define closure (1-2 sentences).
+online def: closure gives you access to an outer function’s scope from an inner function
+In JavaScript, closures are created every time a function is created, at function creation time.
+
+self def: closures let a function inside of another function access the outer function plus global variables, but we cannot reach down into the inner function.
+
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -69,7 +74,7 @@ function personalDice(name){
       // generate random number between 1 and 6
     const newRoll = Math.floor(Math.random() * 6);
     console.log(`${name} rolled a ${newRoll}`)
-  }
+  }ow 
 }
 
 const dansRoll = personalDice("Dan");
@@ -82,8 +87,14 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
+  // The closure is the scope within each function. it's basically each function. each nested function can access the function outside of it, but not the otherway around. 
+
 b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+  // Name would change. everything else is the same. 
+
 c. What is the lexical scope of `newRoll`? 
+  // the surrounding functions aka function() and function personalDice(name).  ????
+
 
 
 ### Task 3 - Stretch Goals
@@ -102,11 +113,22 @@ addSix(21); // returns 27
 
 2. Research the differences between functional programming and object oriented programming. Then, describe the pros and cons of functional programming vs object-oriented programming. This is a common interview question and great practice!
 
+
+
 ## Resources
 
 📚 [Scope and Closures Guide](https://css-tricks.com/javascript-scope-closures/)
 
 🧠 ["I never Understood Closures" Blog](https://medium.com/dailyjs/i-never-understood-javascript-closures-9663703368e8)
+
+
+
+
+
+
+
+
+
 
 ## Submission format
 

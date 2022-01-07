@@ -18,7 +18,13 @@ function processFirstItem(stringList, callback) {
 }
 console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
 
+
+// =-=-=>> so we're making an array and function as ARGUMENTS and console logging the processFirstItem function?
+
 // ⭐️ Example Challenge END ⭐️
+
+
+
 
 
 ///// M V P ///////
@@ -28,11 +34,13 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+      The let variable is inside counter1 but outside of counter2.
+
   2. Which of the two uses a closure? How can you tell?
-  
-  3. In what scenario would the counter1 code be preferable? In what scenario would 
-     counter2 be better?  
+      Counter1 uses a closure bc the counter function and count variable are inside the counterMaker function. 
+
+  3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?  
+    Counter1 allows us to build upon the count variable, for example, while the count variable remains at 0 in counter2
 */
 
 // counter1 code
@@ -53,6 +61,11 @@ function counter2() {
 }
 
 
+
+
+
+
+
 /* ⚾️⚾️⚾️ Task 2: inning() ⚾️⚾️⚾️
 Use the inning function below to do the following:
   1. Return a random whole number of points between 0 and 2 scored by one team in an inning
@@ -62,37 +75,78 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
-}
+            function inning(){
+                return Math.floor(Math.random()*3);
+            }
+            console.log(inning());
+
+
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
 Use the finalScore function below to do the following:
-  1. Receive the callback function `inning` that was created in Task 2 
-  2. Receive a number of innings to be played
+  1. Receive the callback function `inning` that was created in Task 2 -
+  2. Receive a number of innings to be played -
   3. After each inning, update the score of the home and away teams
-  4. After the last inning, return an object containing the final (total) score of the innings played
+  4. After the last inning, return an OBJECT containing the final (total) score of the innings played
   
   For example: invoking finalScore(inning, 9) might return this object:
-{
+  {
   "Home": 11,
   "Away": 5
-}
+  }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inningCB, num){
+	let homeScore= 0;			// what's being updated after each loop
+	let awayScore= 0;
+
+  for(let i=0; i<num; i++){
+		homeScore= homeScore + inningCB();    // () to invoke function inning
+		awayScore= awayScore + inningCB();
+  }
+		return {							//outside the loop
+			Home: homeScore,
+			Away:	awayScore
+		}
 }
+
+console.log(finalScore(inning, 9));
+
+
+/* 
+I want to  add the score of each inning. inningCB will give a score of 0-2 each inning. num= innings 1-9. kind of confusing. wish inning was called score. 
+
+so when i write 2 as an argument for num, the home and away score should be the sum of two games that got a score of 0-2 each. 
+
+the for loop will update the homeScore and awayScore variables each time it loops
+
+i is set to num aka the inning that i pass in as a argument that'll be 1-9.
+
+It returns { } bc it's an object. 
+
+note: remember, it's ok that the param is called inningCB bc we're passing in inning as an arg when we log out the finalScore function 
+*/
+
+
+
+
+
+
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
 Use the getInningScore() function below to do the following:
-  1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
+  1. Receive a callback function - you will pass in the inning function from task 1 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
-  /*Your Code Here */
-}
+  function getInningScore(inningCB) {
+    return {
+      Home: inningCB(),
+      Away: inningCB()
+    }
+  }
+  console.log(getInningScore(inning));
+
 
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
@@ -140,6 +194,12 @@ function scoreboard(/* CODE HERE */) {
   /* CODE HERE */
 }
 
+
+
+
+
+
+// DO THE STRETCH GOAL TASK 3 IN THE READ ME FILE <<----------------- ayyyyyooo
 
 
 
