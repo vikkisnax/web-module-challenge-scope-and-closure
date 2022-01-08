@@ -151,11 +151,10 @@ Use the getInningScore() function below to do the following:
 
 /* ⚾️⚾️⚾️ Task 5: scoreboard() ⚾️⚾️⚾️
 Use the scoreboard function below to do the following:
-  1. Receive the callback function `getInningScore` from Task 4
+  1. Receive the callback function `getInningScore` from Task 3
   2. Receive the callback function `inning` from Task 2
   3. Receive a number of innings to be played
-  4. Return an array where each of it's index values equals a string stating the
-  Home and Away team's scores for each inning.  Not the cummulative score.
+  4. Return an ARRAY [] where each of it's index values equals a string stating the Home and Away team's scores for each inning.  Not the cummulative score.
   5. If there's a tie at the end of the innings, add this message containing the score to the end of the array:  "This game will require extra innings: Away 12 - Home 12"  (see tie example below)
      If there isn't a tie, add this message to the end of the array: "Final Score: Away 13 - Home 11"  (see no tie example below)
   
@@ -190,16 +189,45 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
-}
+/* make an empty array to push the loop's returns into. 
+make a for loop where i>=num.
+return template literals so you see strings when you console log the function 
+i need to ADD the final score */
 
 
+function scoreboard(gisCB, inningCB, totalInn) {
+  const arrayOne = [];
+	let homeScore=0;
+	let awayScore=0;
 
+
+  for(let i=1; i<=totalInn; i++){
+		const inningScore= gisCB(inningCB);
+		homeScore= homeScore + inningScore.Home;
+		awayScore= awayScore + inningScore.Away;
+
+		arrayOne.push(`Inning ${i}: Away ${inningScore.Away} - Home ${inningScore.Home}`)
+  }
+
+	if (homeScore === awayScore){
+	arrayOne.push(
+	`This game will require extra innings: Away ${awayScore} - Home ${homeScore}`);
+	} else {
+	arrayOne.push(
+	`Final Score: Away ${awayScore} - Home ${homeScore}`);
+	}
+
+	return arrayOne;
+  }
+
+  console.log(scoreboard(getInningScore, inning, 2));
 
 
 
 // DO THE STRETCH GOAL TASK 3 IN THE READ ME FILE <<----------------- ayyyyyooo
+
+
+
 
 
 
